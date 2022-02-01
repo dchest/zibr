@@ -31,7 +31,7 @@ func main() {
 	infile := flag.Arg(0)
 	outfile := ""
 	if flag.NArg() == 2 {
-		outfile = flag.Arg(2)
+		outfile = flag.Arg(1)
 	} else {
 		outfile = infile + ".br"
 	}
