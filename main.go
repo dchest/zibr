@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/dchest/cbrotli"
 )
@@ -15,7 +17,8 @@ var (
 
 func main() {
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s infile.zip [outfile]\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Repack ZIP or PNG files with brotli\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s infile [outfile]\n", os.Args[0])
 		flag.PrintDefaults()
 	}
 
@@ -29,6 +32,7 @@ func main() {
 		return
 	}
 	infile := flag.Arg(0)
+	filetype := strings.ToLower(filepath.Ext(infile))
 	outfile := ""
 	if flag.NArg() == 2 {
 		outfile = flag.Arg(1)
@@ -44,7 +48,17 @@ func main() {
 
 	bw := cbrotli.NewWriter(outf, cbrotli.WriterOptions{Quality: *fCompressionLevel})
 	defer bw.Close()
-	if err := RepackZip(bw, infile); err != nil {
-		log.Fatal(err)
+
+	switch filetype {
+	case ".zip":
+		if err := RepackZip(bw, infile); err != nil {
+			log.Fatal(err)
+		}
+	case ".png":
+		if err := RepackPng(bw, infile); err != nil {
+			log.Fatal(err)
+		}
+	default:
+		log.Fatal("Unknown file extension (should be .zip or .png)")
 	}
 }
