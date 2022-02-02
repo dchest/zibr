@@ -1,4 +1,4 @@
 github.com/dchest/cbrotli v1.0.9 h1:vG5ItkgKGgDpdWVzYgHcDLNHIfJGAzQqtW0ohFdZ7UM=
 github.com/dchest/cbrotli v1.0.9/go.mod h1:uug99wHG1B6gF4qBqE2/AKDmREKLuqOBwRm860SAlAg=
-github.com/dchest/pnglevel v0.0.1 h1:VZUsoRddS000ZhEBRuPfkga0Nx27hXwtd5iqVKj2cMw=
-github.com/dchest/pnglevel v0.0.1/go.mod h1:Pbfl4AUSo21gUNaFnksSp4SaTuekvDiBkWHJ1ugdUJ0=
+github.com/dchest/pnglevel v0.1.0 h1:XfJWrF1z942MbtCUmOiRRePigc7K4x6byX/kYkZE7a4=
+github.com/dchest/pnglevel v0.1.0/go.mod h1:Pbfl4AUSo21gUNaFnksSp4SaTuekvDiBkWHJ1ugdUJ0=
