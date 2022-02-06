@@ -1,9 +1,14 @@
 zibr
 ====
 
-zipr is a command-line utility that repacks a compressed ZIP or PNG file into
-a "stored" ZIP file (ZIP without compression) or a PNG without compression,
-and then compresses the result with brotli.
+zipr is a command-line utility that repacks compressed ZIP files into
+"stored" ZIP files (ZIP without compression) or PNG files into
+uncompressed, but valid, PNG files, and then compresses the result
+with brotli. These smaller files may be served by a web server in
+response to requests with `Accept-Encoding: br` to save traffic.
+
+See https://twitter.com/dchest/status/1488449100072857600
+
 
     Usage: zibr infile [outfile]
     -c int
@@ -22,5 +27,3 @@ Example:
 
 will produce "file.png.br".
 
-
-See https://twitter.com/dchest/status/1488449100072857600
