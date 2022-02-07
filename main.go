@@ -13,6 +13,7 @@ import (
 
 var (
 	fCompressionLevel = flag.Int("c", 11, "brotli compression level (0 - 11)")
+	fUTF8             = flag.Bool("utf8", false, "make sure repacked ZIP files have UTF-8 encoding even if the original doesn't")
 )
 
 func main() {
@@ -51,7 +52,7 @@ func main() {
 
 	switch filetype {
 	case ".zip":
-		if err := RepackZip(bw, infile); err != nil {
+		if err := RepackZip(bw, infile, *fUTF8); err != nil {
 			log.Fatal(err)
 		}
 	case ".png":

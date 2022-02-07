@@ -8,7 +8,9 @@ import (
 
 // RepackZip repacks a ZIP file filename into a ZIP file
 // without compression and writes it to the given writer.
-func RepackZip(w io.Writer, filename string) error {
+//
+// If utf8flag is true, sets NonUTF8 flag in file headers to false.
+func RepackZip(w io.Writer, filename string, utf8Flag bool) error {
 	r, err := zip.OpenReader(filename)
 	if err != nil {
 		return err
@@ -19,6 +21,9 @@ func RepackZip(w io.Writer, filename string) error {
 		fmt.Printf("Repacking %s\n", f.Name)
 		h := f.FileHeader
 		h.Method = 0
+		if utf8Flag {
+			h.NonUTF8 = false
+		}
 		fw, err := zw.CreateHeader(&h)
 		if err != nil {
 			return err
